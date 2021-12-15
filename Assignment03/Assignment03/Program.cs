@@ -11,21 +11,22 @@ namespace Assignment03
             // conditie ? caz_true : caz_false
             // variantaNotNull ?? alternativaPtNull
 
-            string text1, text2, text3;
-            text1 = Console.ReadLine();
-            string result = string.IsNullOrWhiteSpace(text1)
-                ? (
-                    string.IsNullOrWhiteSpace(text2 = Console.ReadLine())
-                    ? (
-                        string.IsNullOrWhiteSpace(text3 = Console.ReadLine())
-                            ? "Nu am continut"
-                            : text3
-                      )
-                    : text2
-                  )
-                : text1;
+            string result = ReadFromConsole("Introduceti textul (1):") ??
+                            ReadFromConsole("Introduceti textul (2):") ??
+                            ReadFromConsole("Introduceti textul (3):") ??
+                            "Nu am continut";
 
             Console.WriteLine(result);
+        }
+
+        static string ReadFromConsole(string label)
+        {
+            Console.Write(label);
+            string text = Console.ReadLine();
+
+            return string.IsNullOrWhiteSpace(text)
+                ? null
+                : text;
         }
     }
 }
